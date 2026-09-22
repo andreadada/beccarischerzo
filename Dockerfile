@@ -2,13 +2,13 @@ FROM nginx:stable-alpine
 
 COPY index.html /usr/share/nginx/html/index.html
 COPY friend_texas.jpg /usr/share/nginx/html/friend_texas.jpg
+COPY fix.css /usr/share/nginx/html/fix.css
+COPY fix.js /usr/share/nginx/html/fix.js
 
-# Replace two dead Unsplash photo IDs with currently valid Texas photos.
-# This fixes the San Antonio River Walk image (gallery + activity card)
-# and the Dallas Downtown image (gallery + modal) during the image build.
+# Layer the UI/image fixes over the original static page without duplicating the HTML.
 RUN sed -i \
-  -e 's/photo-1582650625119-3a31f8418b7d/photo-1692193483739-0e378f2eec45/g' \
-  -e 's/photo-1545232979-fbf68fe9b10d/photo-1775717677666-cb0e14a904fe/g' \
+  -e 's#</head>#  <link rel="stylesheet" href="fix.css">\n</head>#' \
+  -e 's#</body>#  <script src="fix.js"></script>\n</body>#' \
   /usr/share/nginx/html/index.html
 
 EXPOSE 80
