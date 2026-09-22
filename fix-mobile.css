@@ -1,3 +1,33 @@
+/* Final mobile overflow/layout hardening */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+.container,
+.container > *,
+section,
+.city-grid,
+.activity-grid,
+.city-card,
+.activity-card,
+.city-card-body,
+.activity-body,
+.expedia-footer,
+.footer-inner,
+.footer-columns,
+.footer-col {
+  min-width: 0;
+  max-width: 100%;
+}
+
 @media (max-width: 960px) {
   .expedia-header.mobile-open .header-left {
     width: 100%;
@@ -7,4 +37,206 @@
   .expedia-header.mobile-open .mobile-menu-btn { order: 2; margin-left: auto; }
   .expedia-header.mobile-open .header-nav { order: 3; flex-basis: 100%; }
   .expedia-header.mobile-open .header-right { flex-basis: 100%; }
+
+  .city-name {
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: flex-start !important;
+  }
+
+  .city-name > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .city-name a,
+  .city-name span {
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+  }
+
+  .section-title,
+  .section-subtitle,
+  .city-tagline,
+  .reason-item,
+  .activity-name,
+  .activity-desc,
+  .footer-col a,
+  .footer-bottom,
+  .footer-bottom p,
+  .banner-text,
+  .banner-quote {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .city-card-actions,
+  .activity-price-box {
+    min-width: 0;
+  }
+
+  .city-card-actions > *,
+  .activity-price-box > * {
+    min-width: 0;
+  }
+
+  .footer-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .footer-logos {
+    flex-wrap: wrap;
+    row-gap: 8px !important;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Do not let the original desktop min-widths create horizontal scrolling. */
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .city-grid,
+  .activity-grid {
+    width: 100% !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .city-card,
+  .activity-card {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .city-card-img,
+  .activity-card-img {
+    width: 100% !important;
+    overflow: hidden;
+  }
+
+  .city-card-img img,
+  .activity-card-img img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .city-name {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start !important;
+    gap: 8px 12px !important;
+  }
+
+  .city-name > :last-child {
+    max-width: 145px;
+    text-align: right;
+    white-space: normal !important;
+  }
+
+  .city-card-body,
+  .activity-body {
+    width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .section-title {
+    width: 100%;
+    max-width: 100%;
+    font-size: 21px !important;
+    line-height: 1.22 !important;
+    letter-spacing: -0.25px !important;
+  }
+
+  .section-subtitle {
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.45;
+  }
+
+  /* Footer must be a single column on phones; the previous 2-column rule overflowed. */
+  .expedia-footer {
+    width: 100% !important;
+    padding: 34px 18px 22px !important;
+  }
+
+  .footer-inner {
+    width: 100% !important;
+  }
+
+  .footer-columns {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 26px !important;
+    width: 100% !important;
+  }
+
+  .footer-col {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .footer-col ul,
+  .footer-col li,
+  .footer-col a {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .footer-col a {
+    display: inline-block;
+    white-space: normal !important;
+    line-height: 1.45;
+  }
+
+  .footer-logos {
+    justify-content: flex-start !important;
+    gap: 7px 10px !important;
+    font-size: 11px;
+  }
+
+  .footer-bottom {
+    width: 100% !important;
+    text-align: left !important;
+    line-height: 1.5;
+  }
+
+  .footer-bottom * {
+    max-width: 100%;
+    white-space: normal !important;
+  }
+
+  .reason-item {
+    align-items: flex-start !important;
+  }
+
+  .btn-city-link {
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .city-name {
+    grid-template-columns: 1fr !important;
+  }
+
+  .city-name > :last-child {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .activity-price-box {
+    flex-wrap: wrap;
+  }
 }
