@@ -1,0 +1,261 @@
+/* Responsive/UI fixes layered over the original page */
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+
+/* Make the faux browser bar non-sticky so it never creates header offsets */
+.browser-bar { position: relative !important; top: auto !important; }
+.expedia-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1200 !important;
+  background: rgba(255,255,255,.96) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgba(13,34,56,.08), 0 8px 30px rgba(13,34,56,.06) !important;
+}
+.header-inner {
+  min-height: 72px;
+  gap: 18px;
+}
+.header-left { min-width: 0; gap: 22px !important; }
+.header-nav { gap: 4px !important; }
+.nav-link, .header-link {
+  white-space: nowrap;
+  padding: 8px 9px !important;
+  font-size: 13.5px !important;
+}
+.header-right { gap: 4px !important; }
+.header-pill-badge { white-space: nowrap; }
+.expedia-logo { flex-shrink: 0; }
+
+/* Mobile navigation button injected by fix.js */
+.mobile-menu-btn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-main);
+  flex: 0 0 auto;
+}
+.mobile-menu-btn svg { width: 22px; height: 22px; }
+
+/* Image rendering */
+.gallery-item img,
+.city-card-img img,
+.activity-card-img img,
+.banner-img-box img {
+  display: block;
+  background: #e8edf3;
+}
+
+/* General polish */
+.gallery-grid, .search-card, .highlight-banner, .faq-container,
+.city-card, .activity-card { box-sizing: border-box; }
+.search-card, .highlight-banner, .faq-container { overflow: hidden; }
+.city-card-img img, .activity-card-img img { object-position: center; }
+.quick-pills { scrollbar-width: none; }
+.quick-pills::-webkit-scrollbar { display: none; }
+
+@media (max-width: 1180px) {
+  .header-inner { padding-left: 18px !important; padding-right: 18px !important; }
+  .header-left { gap: 12px !important; }
+  .header-right .header-link:nth-of-type(1),
+  .header-right .header-link:nth-of-type(2) { display: none; }
+  .nav-link { font-size: 13px !important; padding: 8px 7px !important; }
+  .expedia-logo-text { font-size: 24px !important; }
+}
+
+@media (max-width: 960px) {
+  .browser-bar { display: none !important; }
+  .expedia-header { top: 0 !important; }
+  .header-inner {
+    min-height: 64px;
+    padding: 10px 16px !important;
+    position: relative;
+  }
+  .header-left { width: 100%; justify-content: space-between; }
+  .mobile-menu-btn { display: inline-flex; }
+  .header-nav,
+  .header-right {
+    display: none !important;
+  }
+  .expedia-header.mobile-open .header-inner {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .expedia-header.mobile-open .header-left { width: 100%; }
+  .expedia-header.mobile-open .header-nav,
+  .expedia-header.mobile-open .header-right {
+    display: flex !important;
+    width: 100%;
+  }
+  .expedia-header.mobile-open .header-nav {
+    order: 3;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px !important;
+    padding: 10px 0 4px;
+    border-top: 1px solid var(--border-color);
+  }
+  .expedia-header.mobile-open .header-right {
+    order: 4;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px !important;
+    padding: 6px 0 10px;
+  }
+  .expedia-header.mobile-open .nav-link,
+  .expedia-header.mobile-open .header-link {
+    width: 100%;
+    padding: 11px 10px !important;
+    border-radius: 10px;
+  }
+  .expedia-header.mobile-open .header-pill-badge,
+  .expedia-header.mobile-open .btn-login {
+    margin-top: 4px;
+  }
+
+  .container { padding: 18px 16px 44px !important; }
+  .breadcrumbs {
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .breadcrumbs::-webkit-scrollbar { display: none; }
+  .dest-title { font-size: clamp(28px, 7vw, 36px) !important; }
+  .dest-title-row { gap: 12px !important; }
+  .dest-subtitle { flex-wrap: wrap; font-size: 14px !important; }
+  .dest-actions { width: 100%; }
+  .btn-action-icon { flex: 1; justify-content: center; }
+
+  .quick-pills {
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    padding: 2px 16px 8px !important;
+  }
+
+  .gallery-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: 330px 155px 155px !important;
+    gap: 8px !important;
+    border-radius: 16px !important;
+  }
+  .gallery-item.hero-primary {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+  }
+  .gallery-item:not(.hero-primary) { min-height: 0; }
+  .hero-badge-overlay {
+    top: 12px !important;
+    left: 12px !important;
+    right: 12px;
+    width: fit-content;
+    max-width: calc(100% - 24px);
+    font-size: 11.5px !important;
+    padding: 7px 10px !important;
+  }
+  .hero-caption-overlay { padding: 44px 14px 14px !important; }
+  .hero-caption-title { font-size: 16px !important; }
+  .hero-caption-subtitle { font-size: 12px !important; }
+  .item-label { font-size: 10.5px !important; left: 8px !important; bottom: 8px !important; }
+  .btn-all-photos {
+    right: 10px !important;
+    bottom: 10px !important;
+    padding: 8px 11px !important;
+    font-size: 12px !important;
+  }
+
+  .search-card { padding: 18px !important; border-radius: 16px !important; }
+  .search-tabs {
+    gap: 18px !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 12px !important;
+  }
+  .search-tabs::-webkit-scrollbar { display: none; }
+  .search-tab { flex: 0 0 auto; }
+  .search-fields-row { grid-template-columns: 1fr !important; gap: 10px !important; }
+  .btn-search-main { width: 100%; justify-content: center; height: 54px !important; }
+
+  .highlight-banner {
+    grid-template-columns: 1fr !important;
+    padding: 22px !important;
+    gap: 20px !important;
+    border-radius: 16px !important;
+  }
+  .banner-title { font-size: 24px !important; }
+  .banner-meta { flex-direction: column; gap: 6px !important; }
+  .banner-img-box { order: -1; }
+  .banner-img-box img { height: 300px !important; object-position: center 24% !important; }
+
+  .city-grid, .activity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+  .city-card-img { height: 180px !important; }
+  .activity-card-img { height: 185px !important; }
+  .city-card-body, .activity-body { padding: 16px !important; }
+  .faq-container { padding: 22px !important; }
+}
+
+@media (max-width: 640px) {
+  .expedia-logo-text { font-size: 22px !important; }
+  .container { padding: 14px 12px 36px !important; }
+  .dest-title { font-size: 28px !important; }
+  .official-tag { font-size: 10px !important; }
+  .dest-actions { gap: 8px !important; }
+  .btn-action-icon { padding: 8px 11px !important; font-size: 12.5px !important; }
+
+  .quick-pills {
+    margin-left: -12px !important;
+    margin-right: -12px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  .pill-btn { padding: 7px 12px !important; font-size: 12.5px !important; }
+
+  .gallery-grid {
+    grid-template-rows: 285px 132px 132px !important;
+    gap: 6px !important;
+    margin-bottom: 24px !important;
+  }
+  .hero-caption-subtitle { display: none; }
+  .btn-all-photos svg { display: none; }
+  .btn-all-photos { max-width: 155px; line-height: 1.15; }
+
+  .search-card { padding: 14px !important; margin-bottom: 28px !important; }
+  .search-tabs { margin-bottom: 14px !important; }
+  .input-group-box { padding: 9px 12px !important; }
+
+  .highlight-banner { padding: 16px !important; margin-bottom: 32px !important; }
+  .banner-img-box img { height: 250px !important; }
+  .banner-title { font-size: 21px !important; }
+  .banner-text { font-size: 14px !important; }
+
+  .section-title { font-size: 22px !important; line-height: 1.2; }
+  .section-subtitle { font-size: 14px !important; margin-bottom: 18px !important; }
+  .city-grid, .activity-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+  .city-card, .activity-card { border-radius: 14px !important; }
+  .city-card-img { height: 190px !important; }
+  .activity-card-img { height: 200px !important; }
+  .city-card-actions { flex-wrap: wrap; justify-content: space-between; }
+  .activity-price-box { gap: 12px; }
+  .faq-container { padding: 16px !important; border-radius: 14px !important; }
+  .faq-question { font-size: 15px !important; gap: 12px; }
+  .faq-answer { font-size: 13.5px !important; }
+
+  .footer-columns { grid-template-columns: 1fr 1fr !important; gap: 24px 16px !important; }
+  .expedia-footer { padding: 38px 16px 24px !important; }
+}
+
+@media (max-width: 420px) {
+  .footer-columns { grid-template-columns: 1fr !important; }
+  .gallery-grid { grid-template-rows: 260px 118px 118px !important; }
+  .item-label { max-width: calc(100% - 16px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
