@@ -1,0 +1,10 @@
+@media (max-width: 960px) {
+  .expedia-header.mobile-open .header-left {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .expedia-header.mobile-open .expedia-logo { order: 1; }
+  .expedia-header.mobile-open .mobile-menu-btn { order: 2; margin-left: auto; }
+  .expedia-header.mobile-open .header-nav { order: 3; flex-basis: 100%; }
+  .expedia-header.mobile-open .header-right { flex-basis: 100%; }
+}
